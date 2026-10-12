@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, ConfigDict
 from typing import Literal
 from enum import Enum
 
@@ -25,3 +25,4 @@ class CreateDocument(DocumentBase):
     
 class DocumentResponse(DocumentBase):
     id: int
+    model_config = ConfigDict(from_attributes=True)

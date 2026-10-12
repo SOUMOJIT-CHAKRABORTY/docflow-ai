@@ -50,3 +50,6 @@ temp/
 # OS/editor files
 *.swp
 *.swo
+
+# Docker-compose file
+docker-compose.yaml
