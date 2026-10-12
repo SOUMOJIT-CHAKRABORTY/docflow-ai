@@ -1,5 +1,7 @@
-from fastapi import APIRouter, status, Query
+from fastapi import APIRouter, status, Query, Depends
 from schemas import CreateDocument, DocumentResponse
+from sqlalchemy.orm import Session
+from database import get_db
 
 router = APIRouter(
     prefix="/documents",
@@ -24,7 +26,10 @@ async def get_document(document_id: int):
     }
 
 @router.post("", response_model=DocumentResponse, status_code=status.HTTP_201_CREATED)
-async def create_document(document: CreateDocument):
+async def create_document(
+    document: CreateDocument,
+    db: Session = Depends(get_db)
+    ):
     return {
         "id": 1,
         "title": document.title,
